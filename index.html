@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contactless Dining Plans</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .plan-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .plan-card.base {
+            border-top: 5px solid #28a745;
+        }
+
+        .plan-card.standard {
+            border-top: 5px solid #007bff;
+        }
+
+        .plan-card.premium {
+            border-top: 5px solid #ff5733;
+        }
+
+        .plan-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .plan-card .price {
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .plan-card .price span {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .plan-card ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .plan-card ul li {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .plan-card ul li i {
+            color: #28a745;
+            margin-right: 10px;
+        }
+
+        .plan-card.standard ul li i {
+            color: #007bff;
+        }
+
+        .plan-card.premium ul li i {
+            color: #ff5733;
+        }
+
+        .plan-card .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .plan-card.standard .btn {
+            background: #007bff;
+        }
+
+        .plan-card.premium .btn {
+            background: #ff5733;
+        }
+
+        .plan-card .btn:hover {
+            background: #218838;
+        }
+
+        .plan-card.standard .btn:hover {
+            background: #0056b3;
+        }
+
+        .plan-card.premium .btn:hover {
+            background: #c43f27;
+        }
+
+        .ribbon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ffd700;
+            color: #333;
+            padding: 5px 20px;
+            font-size: 14px;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .plan-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Base Plan -->
+        <div class="plan-card base">
+            <h2>Base Plan</h2>
+            <div class="price">₹2000<span>/one-time</span></div>
+            <ul>
+                <li><i class="fas fa-check-circle"></i>Updated Menu</li>
+                <li><i class="fas fa-check-circle"></i>QR Requirements</li>
+                <li><i class="fas fa-check-circle"></i>Ad Support</li>
+            </ul>
+            <a href="https://wa.me/919744849679?text=I'm%20interested%20in%20the%20Base%20Plan%20for%20the%20contactless%20dining%20system" class="btn" target="_blank">Choose Plan</a>
+        </div>
+
+        <!-- Standard Plan -->
+        <div class="plan-card standard">
+            <div class="ribbon">Most Popular</div>
+            <h2>Standard Plan</h2>
+            <div class="price">₹5000<span>/one-time</span></div>
+            <ul>
+                <li><i class="fas fa-check-circle"></i>Updated Menu</li>
+                <li><i class="fas fa-check-circle"></i>Admin Panel</li>
+                <li><i class="fas fa-check-circle"></i>App or Web</li>
+                <li><i class="fas fa-check-circle"></i>Customer Suggestions</li>
+            </ul>
+            <a href="https://wa.me/919744849679?text=I'm%20interested%20in%20the%20Standard%20Plan%20for%20the%20contactless%20dining%20system" class="btn" target="_blank">Choose Plan</a>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="plan-card premium">
+            <h2>Premium Plan</h2>
+            <div class="price">₹15000<span>/one-time</span></div>
+            <ul>
+                <li><i class="fas fa-check-circle"></i>Updated Menu</li>
+                <li><i class="fas fa-check-circle"></i>Full Customization</li>
+                <li><i class="fas fa-check-circle"></i>Payment Gateway</li>
+                <li><i class="fas fa-check-circle"></i>Admin & Staff Panel</li>
+                <li><i class="fas fa-check-circle"></i>Google Review Integration</li>
+                <li><i class="fas fa-check-circle"></i>Online Ordering</li>
+                <li><i class="fas fa-check-circle"></i>Billing System</li>
+            </ul>
+            <a href="https://wa.me/919744849679?text=I'm%20interested%20in%20the%20Premium%20Plan%20for%20the%20contactless%20dining%20system" class="btn" target="_blank">Choose Plan</a>
+        </div>
+    </div>
+</body>
+</html>
