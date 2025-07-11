@@ -3,200 +3,448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactless Dining Plans</title>
+    <title>Futuristic Contactless Dining Plans</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* --- Base Setup --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* --- Futuristic Background with Glowing Orbs --- */
         body {
-            background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+            background-color: #0a0a10;
+            background-image: radial-gradient(circle at 50% 50%, rgba(40, 42, 54, 0.5), #0a0a10 70%);
+            font-family: 'Poppins', sans-serif;
+            color: #f0f0f0;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(150px);
+        }
+
+        body::before {
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 191, 255, 0.3);
+            top: -50px;
+            left: -50px;
+        }
+
+        body::after {
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 71, 166, 0.25);
+            bottom: -60px;
+            right: -50px;
+        }
+
+        /* --- Page Layout --- */
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            padding: 40px 15px;
         }
 
+        /* --- Header & Footer --- */
+        header, footer {
+            width: 100%;
+            padding: 20px 30px;
+            background: rgba(16, 18, 27, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        header {
+            border-bottom: 1px solid rgba(0, 191, 255, 0.3);
+            text-align: center;
+        }
+        
+        /* === LOGO & TITLE STYLING === */
+        .header-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(0, 191, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; /* Increased space for bigger logo */
+        }
+
+        .header-logo {
+            height: 45px; /* Increased from 30px */
+            width: auto;
+            border-radius: 5px; /* Added border-radius */
+            filter: drop-shadow(0 0 6px rgba(0, 191, 255, 0.6));
+        }
+
+        footer {
+            border-top: 1px solid rgba(0, 191, 255, 0.3);
+            text-align: center;
+            color: #aaa;
+            padding-top: 25px;
+        }
+
+        .social-icons {
+            margin-bottom: 10px;
+        }
+
+        .social-icons a {
+            color: #aaa;
+            font-size: 18px;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #00bfff;
+            transform: translateY(-2px) scale(1.1);
+        }
+
+        .copyright {
+            font-size: 12px;
+        }
+        
         .container {
             max-width: 1200px;
+            width: 100%;
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
             justify-content: center;
+            align-items: stretch;
+            z-index: 1;
         }
 
+        /* --- Cream Card Design --- */
         .plan-card {
-            background: #fff;
+            background: #f8f9fa;
             border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            width: 320px;
-            padding: 30px;
+            width: 100%;
+            max-width: 350px;
+            padding: 30px 25px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease, box-shadow 0.4s ease;
             position: relative;
             overflow: hidden;
+            border: 1px solid #e0e0e0;
+            color: #111;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--glow-color);
+        }
+        
+        /* --- Plan Specific Glow Colors --- */
+        .plan-card.base { --glow-color: #00ff88; }
+        .plan-card.standard { --glow-color: #00bfff; }
+        .plan-card.premium { --glow-color: #ff47a6; }
+
+        .plan-card {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 0 15px -8px var(--glow-color);
         }
 
         .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15), 0 0 30px -5px var(--glow-color);
         }
 
-        .plan-card.base {
-            border-top: 5px solid #28a745;
-        }
-
-        .plan-card.standard {
-            border-top: 5px solid #007bff;
-        }
-
-        .plan-card.premium {
-            border-top: 5px solid #ff5733;
-        }
-
+        /* --- Card Content Styling --- */
         .plan-card h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 24px;
-            margin-bottom: 10px;
-            color: #333;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1d2d35;
         }
 
         .plan-card .price {
-            font-size: 30px;
+            font-size: 36px;
+            font-weight: 700;
             color: #333;
             margin-bottom: 20px;
         }
 
         .plan-card .price span {
-            font-size: 16px;
-            color: #777;
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+            margin-left: 4px;
         }
 
         .plan-card ul {
             list-style: none;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+            padding: 0;
+            flex-grow: 1;
         }
 
         .plan-card ul li {
-            font-size: 16px;
+            font-size: 14px;
             color: #555;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            justify-content: center;
         }
 
         .plan-card ul li i {
-            color: #28a745;
+            color: var(--glow-color);
             margin-right: 10px;
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
         }
-
-        .plan-card.standard ul li i {
-            color: #007bff;
-        }
-
-        .plan-card.premium ul li i {
-            color: #ff5733;
-        }
-
+        
+        /* --- Solid, Vibrant Button --- */
         .plan-card .btn {
             display: inline-block;
-            padding: 12px 25px;
-            background: #28a745;
+            padding: 12px 30px;
+            background: var(--glow-color);
             color: #fff;
             text-decoration: none;
-            border-radius: 25px;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-
-        .plan-card.standard .btn {
-            background: #007bff;
-        }
-
-        .plan-card.premium .btn {
-            background: #ff5733;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            box-shadow: 0 3px 12px -5px var(--glow-color);
+            align-self: center;
         }
 
         .plan-card .btn:hover {
-            background: #218838;
+            transform: scale(1.05);
+            filter: brightness(110%);
+            box-shadow: 0 5px 20px -5px var(--glow-color);
         }
 
-        .plan-card.standard .btn:hover {
-            background: #0056b3;
-        }
-
-        .plan-card.premium .btn:hover {
-            background: #c43f27;
-        }
-
+        /* --- Modern Ribbon --- */
         .ribbon {
             position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #ffd700;
-            color: #333;
-            padding: 5px 20px;
-            font-size: 14px;
+            top: 15px;
+            right: -30px;
+            background: var(--glow-color);
+            color: #fff;
+            padding: 6px 35px;
+            font-size: 12px;
+            font-weight: 600;
             transform: rotate(45deg);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            .container {
+                gap: 25px;
+                padding: 0 10px;
+            }
+            .plan-card {
+                max-width: 320px;
+            }
         }
 
         @media (max-width: 768px) {
+            main {
+                padding: 30px 10px;
+            }
+            header, footer {
+                padding: 15px 20px;
+            }
+            .header-title {
+                font-size: 20px;
+                letter-spacing: 1px;
+            }
+            .header-logo {
+                height: 35px; /* Increased from 25px */
+            }
+            
+            .container {
+                display: grid;
+                justify-items: center; 
+                gap: 25px;
+            }
+            
             .plan-card {
+                max-width: 90%;
                 width: 100%;
-                max-width: 400px;
+                padding: 25px 20px;
+            }
+            .plan-card h2 {
+                font-size: 22px;
+            }
+            .plan-card .price {
+                font-size: 32px;
+            }
+            .plan-card ul li {
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+            .plan-card .btn {
+                padding: 10px 25px;
+                font-size: 13px;
+            }
+            .ribbon {
+                top: 12px;
+                right: -28px;
+                padding: 5px 30px;
+                font-size: 11px;
+            }
+            body::before, body::after {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 20px 10px;
+            }
+            .header-title {
+                font-size: 18px;
+            }
+            .header-logo {
+                height: 30px; /* Increased from 22px */
+            }
+            .container {
+                gap: 20px;
+            }
+            .plan-card {
+                max-width: 95%;
+                padding: 25px 15px;
+            }
+            .plan-card h2 {
+                font-size: 20px;
+            }
+            .plan-card .price {
+                font-size: 28px;
+            }
+            .plan-card ul li {
+                font-size: 12px;
+            }
+            .plan-card .btn {
+                padding: 10px 22px;
+                font-size: 12px;
+            }
+            .social-icons a {
+                font-size: 16px;
+                margin: 0 8px;
+            }
+            .copyright {
+                font-size: 11px;
+            }
+            body::before, body::after {
+                width: 150px;
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Base Plan -->
-        <div class="plan-card base">
-            <h2>Base Plan</h2>
-            <div class="price">₹2000<span>/one-time</span></div>
-            <ul>
-                <li><i class="fas fa-check-circle"></i>Updated Menu</li>
-                <li><i class="fas fa-check-circle"></i>QR Requirements</li>
-                <li><i class="fas fa-check-circle"></i>Ad Support</li>
-            </ul>
-            <a href="https://wa.me/919744849679?text=I'm%20interested%20in%20the%20Base%20Plan%20for%20the%20contactless%20dining%20system" class="btn" target="_blank">Choose Plan</a>
-        </div>
+    <div class="page-wrapper">
+        <header>
+            <div class="header-title">
+                <img src="choisir-craft-logo.jpg" alt="Choisircraft Logo" class="header-logo">
+                <span>CHOISIRCRAFT</span>
+            </div>
+        </header>
 
-        <!-- Standard Plan -->
-        <div class="plan-card standard">
-            <div class="ribbon">Most Popular</div>
-            <h2>Standard Plan</h2>
-            <div class="price">₹5000<span>/one-time</span></div>
-            <ul>
-                <li><i class="fas fa-check-circle"></i>Updated Menu</li>
-                <li><i class="fas fa-check-circle"></i>Admin Panel</li>
-                <li><i class="fas fa-check-circle"></i>App or Web</li>
-                <li><i class="fas fa-check-circle"></i>Customer Suggestions</li>
-            </ul>
-            <a href="https://wa.me/919744849679?text=I'm%20interested%20in%20the%20Standard%20Plan%20for%20the%20contactless%20dining%20system" class="btn" target="_blank">Choose Plan</a>
-        </div>
+        <main>
+            <div class="container">
+                <!-- Basic Plan -->
+                <div class="plan-card base">
+                    <h2>Basic Plan</h2>
+                    <div class="price">₹2500<span>/First Year</span></div>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i>Updated digital QR code</li>
+                        <li><i class="fas fa-check-circle"></i>Admin panel</li>
+                        <li><i class="fas fa-check-circle"></i>Yearly Renewal</li>
+                    </ul>
+                    <a href="https://wa.me/919495257093?text=I'm%20interested%20in%20the%20Basic%20Plan%20for%20the%20contactless%20dining%20system" class="btn" target="_blank">Choose Plan</a>
+                </div>
+        
+                <!-- Standard Plan -->
+                <div class="plan-card standard">
+                    <div class="ribbon">Most Popular</div>
+                    <h2>Standard Plan</h2>
+                    <div class="price">₹5000<span>/First Year</span></div>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i>Updated digital QR code</li>
+                        <li><i class="fas fa-check-circle"></i>Admin/Staff panel</li>
+                        <li><i class="fas fa-check-circle"></i>App and web interface</li>
+                        <li><i class="fas fa-check-circle"></i>Ordering system</li>
+                        <li><i class="fas fa-check-circle"></i>Customized to customer requirements</li>
+                        <li><i class="fas fa-check-circle"></i>Yearly Renewal</li>
+                    </ul>
+                    <a href="https://wa.me/919495257093?text=I'm%20interested%20in%20the%20Standard%20Plan%20for%20the%20contactless%20dining%20system" class="btn" target="_blank">Choose Plan</a>
+                </div>
+        
+                <!-- Premium Plan -->
+                <div class="plan-card premium">
+                    <h2>Premium Plan</h2>
+                    <div class="price">₹7500<span>/First Year</span></div>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i>Updated digital menu</li>
+                        <li><i class="fas fa-check-circle"></i>Admin/Staff panel</li>
+                        <li><i class="fas fa-check-circle"></i>Mobile application</li>
+                        <li><i class="fas fa-check-circle"></i>Ordering and billing system</li>
+                        <li><i class="fas fa-check-circle"></i>Payment gateway integration</li>
+                        <li><i class="fas fa-check-circle"></i>Google Review integration</li>
+                        <li><i class="fas fa-check-circle"></i>Customized to customer requirements</li>
+                        <li><i class="fas fa-check-circle"></i>Yearly Renewal</li>
+                    </ul>
+                    <a href="https://wa.me/919495257093?text=I'm%20interested%20in%20the%20Premium%20Plan%20for%20the%20contactless%20dining%20system" class="btn" target="_blank">Choose Plan</a>
+                </div>
+            </div>
+        </main>
 
-        <!-- Premium Plan -->
-        <div class="plan-card premium">
-            <h2>Premium Plan</h2>
-            <div class="price">₹15000<span>/one-time</span></div>
-            <ul>
-                <li><i class="fas fa-check-circle"></i>Updated Menu</li>
-                <li><i class="fas fa-check-circle"></i>Full Customization</li>
-                <li><i class="fas fa-check-circle"></i>Payment Gateway</li>
-                <li><i class="fas fa-check-circle"></i>Admin & Staff Panel</li>
-                <li><i class="fas fa-check-circle"></i>Google Review Integration</li>
-                <li><i class="fas fa-check-circle"></i>Online Ordering</li>
-                <li><i class="fas fa-check-circle"></i>Billing System</li>
-            </ul>
-            <a href="https://wa.me/919744849679?text=I'm%20interested%20in%20the%20Premium%20Plan%20for%20the%20contactless%20dining%20system" class="btn" target="_blank">Choose Plan</a>
-        </div>
+        <footer>
+            <!-- <div class="social-icons">
+                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div> -->
+            <p class="copyright">© 2024 CHOISIRCRAFT. All Rights Reserved.</p>
+        </footer>
     </div>
 </body>
 </html>
